@@ -7,7 +7,7 @@
     "start:dev": "nodemon --exec 'npm run build && npm start' --watch . --ext ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "prettier": "prettier --write ."
   },
   "repository": {
