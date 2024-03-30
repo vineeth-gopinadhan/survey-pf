@@ -12,14 +12,14 @@ class Server {
     this.router = new AppRouter();
   }
 
-  async createApp(): Promise<void> {
+  createApp() {
     this.app.use(express.json());
     this.app.use(this.router.getRouter());
   }
 
-  async start(): Promise<void> {
+  start() {
     try {
-      await this.createApp();
+      this.createApp();
       this.app.listen(this.port, () => {
         console.info(`Server is running on http://localhost:${this.port}`);
       });
