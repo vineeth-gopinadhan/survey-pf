@@ -1,0 +1,13 @@
+{
+  "development": {
+    "driver": "pg",
+    "user": "survey_admin",
+    "password": "survey_admin",
+    "host": "127.0.0.1",
+    "port": "15432",
+    "database": "survey_db",
+    "schema": "public"
+  },
+  "defaultEnv": "development",
+  "sql-file": true
+}
