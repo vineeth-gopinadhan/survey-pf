@@ -16,7 +16,7 @@ CREATE TABLE mst.survey (
 CREATE TABLE mst.question (
     question_id SERIAL PRIMARY KEY,
     survey_id INT NOT NULL,
-    title VARCHAR(50) NOT NULL,
+    title TEXT NOT NULL,
     description TEXT NOT NULL,
     "order" INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -36,7 +36,7 @@ CREATE TABLE mst.option (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_question FOREIGN KEY (question_id) REFERENCES mst.question(question_id) ON DELETE CASCADE,
-    CONSTRAINT unique_order_option_id UNIQUE ("order", option_id)
+    CONSTRAINT unique_order_option_id UNIQUE ("order", question_id)
 );
 
 -- Create User Table

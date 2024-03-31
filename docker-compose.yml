@@ -9,6 +9,14 @@ services:
       - POSTGRES_DB=survey_db
     ports:
       - '15432:5432'
+  pgweb:
+    image: sosedoff/pgweb
+    environment:
+      - DATABASE_URL=postgres://survey_admin:survey_admin@db:5432/survey_db?sslmode=disable
+    ports:
+      - 8081:8081
+    depends_on:
+      - db
 
   survey:
     container_name: survey-pf-v1
