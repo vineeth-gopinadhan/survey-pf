@@ -12,9 +12,10 @@ class Server {
     this.router = new AppRouter();
   }
 
-  createApp() {
+  createApp(): Express {
     this.app.use(express.json());
     this.app.use(this.router.getRouter());
+    return this.app;
   }
 
   start() {

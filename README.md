@@ -24,3 +24,11 @@ We also need to design the database architecture for storing the response data (
 4. Using Javascript (Typescript for bonus points), please code CRUD endpoints for question options (you should also code an option [entity](https://orkhan.gitbook.io/typeorm/docs/entities) for this task)
 5. Write unit tests for the Update endpoint you’ve created.
 6. Consider the code required to save a response from a respondent. Write brief notes (no more than a paragraph or a few bullet points) describing what validation you would apply to the request before saving the response to the database.
+
+### To Do
+
+1. Move credentials to env file
+2. Add proper schema validation for request. (Try AJV validator (https://www.npmjs.com/package/ajv))
+3. Add DB validation for params like question_id, option_id, skip_to_question etc.
+4. Complete e2e and unit tests.
+5. Create swagger documentation.
