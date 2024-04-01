@@ -74,6 +74,29 @@ class OptionController {
       res.status(statusCode).json({ status: 'nok', error: message });
     }
   }
+
+  async deleteOption(req: Request, res: Response) {
+    try {
+      const { optionId } = req.params;
+      console.log('DEL Option Args:', {
+        optionId,
+      });
+
+      await this.optionService.deleteOption(
+        parseInt(optionId, 10),
+      );
+      res.json({
+        status: 'ok',
+        message: 'Successfully Deleted Option',
+      });
+      console.log('DEL Option API completed successfully ');
+    } catch (error) {
+      console.error('Error retrieving option:', error);
+      const err: CustomError = { message: 'Internal Error' };
+      const { statusCode, message } = parseServiceError(err as CustomError);
+      res.status(statusCode).json({ status: 'nok', error: message });
+    }
+  }
 }
 
 export default OptionController;

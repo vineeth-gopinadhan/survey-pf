@@ -37,4 +37,13 @@ export default class OptionService {
       throw err;
     }
   }
+
+  async deleteOption(optionId: number) {
+    try {
+      const reqParam: any[] = [optionId];
+      await this.pg.query(Query.Delete_Option, reqParam);
+    } catch (err) {
+      throw err;
+    }
+  }
 }
