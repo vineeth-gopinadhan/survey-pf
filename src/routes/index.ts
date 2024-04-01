@@ -23,6 +23,10 @@ class AppRouter {
       '/v1/questions/:questionId/option',
       this.optionController.createOption.bind(this.optionController),
     );
+    this.router.get(
+      '/v1/questions/:questionId/option',
+      this.optionController.retrieveOptions.bind(this.optionController),
+    );
   }
 
   getRouter(): Router {
