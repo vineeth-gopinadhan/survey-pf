@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start:dev": "nodemon --exec 'npm run build && npm start' --watch . --ext ts",
+    "start:dev": "nodemon --exec 'npm run start' --watch . --ext ts",
     "build": "tsc",
     "start": "npm run build && node dist/app.js",
     "test": "jest --passWithNoTests",

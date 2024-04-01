@@ -8,7 +8,7 @@ function parseServiceError(error: CustomError): ServiceError {
     switch (error.message) {
       case 'Not Found':
         statusCode = 404;
-        message = 'Not found';
+        message = 'Not Found';
         break;
       default:
         break;

@@ -23,4 +23,18 @@ export default class OptionService {
       throw err;
     }
   }
+
+  async getOptions(questionId: number) {
+    try {
+      const reqParam: any[] = [questionId];
+      let options: OptionData[] = [];
+      const result = await this.pg.query(Query.Get_Options, reqParam);
+      if (result && result.rows) {
+        options = result.rows as OptionData[];
+      }
+      return options;
+    } catch (err) {
+      throw err;
+    }
+  }
 }

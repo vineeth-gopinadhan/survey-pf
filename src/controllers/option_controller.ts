@@ -43,6 +43,37 @@ class OptionController {
       res.status(statusCode).json({ status: 'nok', error: message });
     }
   }
+
+  async retrieveOptions(req: Request, res: Response) {
+    try {
+      const { questionId } = req.params;
+      console.log('GET Option Args:', {
+        questionId,
+      });
+
+      const options = await this.optionService.getOptions(
+        parseInt(questionId, 10),
+      );
+
+      if (options.length == 0) {
+        console.error('No options found');
+        const err: CustomError = { message: 'Not Found' };
+        const { statusCode, message } = parseServiceError(err);
+        res.status(statusCode).json({ status: 'nok', error: message });
+        return;
+      }
+      res.json({
+        status: 'ok',
+        options,
+      });
+      console.log('GET Option API completed successfully ');
+    } catch (error) {
+      console.error('Error retrieving option:', error);
+      const err: CustomError = { message: 'Internal Error' };
+      const { statusCode, message } = parseServiceError(err);
+      res.status(statusCode).json({ status: 'nok', error: message });
+    }
+  }
 }
 
 export default OptionController;
