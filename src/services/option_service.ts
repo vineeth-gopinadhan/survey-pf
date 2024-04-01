@@ -49,7 +49,6 @@ export default class OptionService {
 
   async updateOption(option: OptionData) {
     try {
-
       const reqParam: any[] = [
         option.optionId,
         option.questionId,
@@ -63,5 +62,4 @@ export default class OptionService {
       throw err;
     }
   }
-
 }

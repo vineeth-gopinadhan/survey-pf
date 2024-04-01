@@ -177,7 +177,7 @@ describe('OptionController', () => {
         status: jest.fn().mockReturnThis(),
       };
     });
-  
+
     it('should call optionService.deleteOption with correct optionId', async () => {
       await optionController.deleteOption(req as Request, res as Response);
 
@@ -194,7 +194,6 @@ describe('OptionController', () => {
     });
 
     it('should send response with status "nok" and error message when error occurs during deleting option', async () => {
-
       optionService.deleteOption.rejects(new Error('Internal Error'));
 
       await optionController.deleteOption(req as Request, res as Response);
@@ -233,7 +232,7 @@ describe('OptionController', () => {
         status: jest.fn().mockReturnThis(),
       };
     });
-  
+
     it('should call optionService.updateOption with correct optionId', async () => {
       await optionController.updateOption(req as Request, res as Response);
       const option: OptionData = {
@@ -258,7 +257,6 @@ describe('OptionController', () => {
     });
 
     it('should send response with status "nok" and error message when error occurs during update', async () => {
-
       optionService.updateOption.rejects(new Error('Internal Error'));
 
       await optionController.updateOption(req as Request, res as Response);
@@ -270,5 +268,4 @@ describe('OptionController', () => {
       });
     });
   });
-
 });

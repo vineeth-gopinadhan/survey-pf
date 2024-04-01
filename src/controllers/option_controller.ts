@@ -82,9 +82,7 @@ class OptionController {
         optionId,
       });
 
-      await this.optionService.deleteOption(
-        parseInt(optionId, 10),
-      );
+      await this.optionService.deleteOption(parseInt(optionId, 10));
       res.json({
         status: 'ok',
         message: 'Successfully Deleted Option',

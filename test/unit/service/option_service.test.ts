@@ -140,11 +140,12 @@ describe('OptionService', () => {
       const optionId = 1;
       await optionService.deleteOption(optionId);
 
-      expect(pgMock.query).toHaveBeenCalledWith(Query.Delete_Option, [optionId]);
+      expect(pgMock.query).toHaveBeenCalledWith(Query.Delete_Option, [
+        optionId,
+      ]);
     });
 
     it('should throw an error if database query fails', async () => {
-
       const pgMock: jest.Mocked<DatabaseManager> = {
         query: jest.fn().mockRejectedValue(new Error('Database error')),
       } as any;
@@ -152,7 +153,9 @@ describe('OptionService', () => {
       const optionService = new OptionService(pgMock as DatabaseManager);
 
       const optionId = 1;
-      await expect(optionService.deleteOption(optionId)).rejects.toThrow('Database error');
+      await expect(optionService.deleteOption(optionId)).rejects.toThrow(
+        'Database error',
+      );
     });
   });
 
@@ -185,7 +188,6 @@ describe('OptionService', () => {
     });
 
     it('should throw an error if database query fails', async () => {
-
       const pgMock: jest.Mocked<DatabaseManager> = {
         query: jest.fn().mockRejectedValue(new Error('Database error')),
       } as any;
@@ -200,7 +202,9 @@ describe('OptionService', () => {
         skipToQuestion: 2,
         order: 1,
       };
-      await expect(optionService.updateOption(option)).rejects.toThrow('Database error');
+      await expect(optionService.updateOption(option)).rejects.toThrow(
+        'Database error',
+      );
     });
   });
 });
