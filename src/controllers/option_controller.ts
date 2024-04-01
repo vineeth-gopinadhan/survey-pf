@@ -82,9 +82,7 @@ class OptionController {
         optionId,
       });
 
-      await this.optionService.deleteOption(
-        parseInt(optionId, 10),
-      );
+      await this.optionService.deleteOption(parseInt(optionId, 10));
       res.json({
         status: 'ok',
         message: 'Successfully Deleted Option',
@@ -94,6 +92,42 @@ class OptionController {
       console.error('Error retrieving option:', error);
       const err: CustomError = { message: 'Internal Error' };
       const { statusCode, message } = parseServiceError(err as CustomError);
+      res.status(statusCode).json({ status: 'nok', error: message });
+    }
+  }
+
+  async updateOption(req: Request, res: Response) {
+    try {
+      const { optionId, questionId } = req.params;
+      const { image_url, subtitle, skip_to_question, order } = req.body;
+      console.log('PUT Option Args:', {
+        questionId,
+        optionId,
+        image_url,
+        subtitle,
+        skip_to_question,
+        order,
+      });
+
+      const option: OptionData = {
+        questionId: parseInt(questionId, 10),
+        optionId: parseInt(optionId, 10),
+        imageUrl: image_url,
+        subtitle,
+        skipToQuestion: skip_to_question,
+        order,
+      };
+
+      await this.optionService.updateOption(option);
+      res.json({
+        status: 'ok',
+        message: 'Successfully Updated Option',
+      });
+      console.log('PUT Option API completed successfully ');
+    } catch (error) {
+      console.error('Error updating option:', error);
+      const err: CustomError = { message: 'Internal Error' };
+      const { statusCode, message } = parseServiceError(err);
       res.status(statusCode).json({ status: 'nok', error: message });
     }
   }
