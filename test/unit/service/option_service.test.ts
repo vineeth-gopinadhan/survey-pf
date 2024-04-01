@@ -128,4 +128,31 @@ describe('OptionService', () => {
       ]);
     });
   });
+
+  describe('deleteOption', () => {
+    it('should call pg.query with correct parameters', async () => {
+      const pgMock: jest.Mocked<DatabaseManager> = {
+        query: jest.fn(),
+      } as any;
+
+      const optionService = new OptionService(pgMock);
+
+      const optionId = 1;
+      await optionService.deleteOption(optionId);
+
+      expect(pgMock.query).toHaveBeenCalledWith(Query.Delete_Option, [optionId]);
+    });
+
+    it('should throw an error if database query fails', async () => {
+
+      const pgMock: jest.Mocked<DatabaseManager> = {
+        query: jest.fn().mockRejectedValue(new Error('Database error')),
+      } as any;
+
+      const optionService = new OptionService(pgMock as DatabaseManager);
+
+      const optionId = 1;
+      await expect(optionService.deleteOption(optionId)).rejects.toThrow('Database error');
+    });
+  });
 });

@@ -24,8 +24,12 @@ class AppRouter {
       this.optionController.createOption.bind(this.optionController),
     );
     this.router.get(
-      '/v1/questions/:questionId/option',
+      '/v1/questions/:questionId/options',
       this.optionController.retrieveOptions.bind(this.optionController),
+    );
+    this.router.delete(
+      '/v1/options/:optionId',
+      this.optionController.deleteOption.bind(this.optionController),
     );
   }
 

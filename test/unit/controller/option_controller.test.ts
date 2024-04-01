@@ -157,4 +157,53 @@ describe('OptionController', () => {
       });
     });
   });
+
+  describe('deleteOption', () => {
+    let optionService: sinon.SinonStubbedInstance<OptionService>;
+    let optionController: OptionController;
+    let req: Partial<Request>;
+    let res: Partial<Response>;
+
+    beforeEach(() => {
+      optionService = sinon.createStubInstance(OptionService);
+      optionController = new OptionController(optionService);
+      req = {
+        params: {
+          optionId: '1',
+        },
+      };
+      res = {
+        json: jest.fn(),
+        status: jest.fn().mockReturnThis(),
+      };
+    });
+  
+    it('should call optionService.deleteOption with correct optionId', async () => {
+      await optionController.deleteOption(req as Request, res as Response);
+
+      sinon.assert.calledOnceWithExactly(optionService.deleteOption, 1);
+    });
+
+    it('should send response with status "ok" when option is successfully deleted', async () => {
+      await optionController.deleteOption(req as Request, res as Response);
+
+      expect(res.json).toHaveBeenCalledWith({
+        status: 'ok',
+        message: 'Successfully Deleted Option',
+      });
+    });
+
+    it('should send response with status "nok" and error message when error occurs during deleting option', async () => {
+
+      optionService.deleteOption.rejects(new Error('Internal Error'));
+
+      await optionController.deleteOption(req as Request, res as Response);
+
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.json).toHaveBeenCalledWith({
+        status: 'nok',
+        error: 'Internal Server Error',
+      });
+    });
+  });
 });
