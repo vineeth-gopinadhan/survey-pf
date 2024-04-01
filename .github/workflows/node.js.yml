@@ -12,6 +12,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12.9
+        env:
+          POSTGRES_USER: survey_admin
+          POSTGRES_PASSWORD: survey_admin
+          POSTGRES_DB: survey_db
+        ports:
+          - 15432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
