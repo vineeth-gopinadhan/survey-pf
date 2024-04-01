@@ -25,10 +25,18 @@ We also need to design the database architecture for storing the response data (
 5. Write unit tests for the Update endpoint you’ve created.
 6. Consider the code required to save a response from a respondent. Write brief notes (no more than a paragraph or a few bullet points) describing what validation you would apply to the request before saving the response to the database.
 
+### Important links
+
+1. [ERD](https://github.com/vineeth-gopinadhan/survey-pf/blob/master/docs/ERD/er_survey_db.png)
+2. [Migration SQL](https://github.com/vineeth-gopinadhan/survey-pf/blob/master/migrations/sqls/20240331122012-survey-v1-initial-migration-up.sql)
+3. [Postman Script](https://github.com/vineeth-gopinadhan/survey-pf/tree/master/docs/postman)
+
+
 ### To Do
 
 1. Move credentials to env file
-2. Add proper schema validation for request. (Try AJV validator (https://www.npmjs.com/package/ajv))
-3. Add DB validation for params like question_id, option_id, skip_to_question etc.
-4. Complete e2e and unit tests.
-5. Create swagger documentation.
+2. Include image upload feature in POST Options API
+3. Add proper schema validation for request. (Try AJV validator (https://www.npmjs.com/package/ajv))
+4. Add DB validation for params like question_id, option_id, skip_to_question etc.
+5. Complete e2e and unit tests.
+6. Create swagger documentation.
