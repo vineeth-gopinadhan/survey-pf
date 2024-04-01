@@ -35,8 +35,8 @@ We also need to design the database architecture for storing the response data (
 ### To Do
 
 1. Move credentials to env file
-2. Include image upload feature in POST Options API
-3. Add proper schema validation for request. (Try AJV validator (https://www.npmjs.com/package/ajv))
+2. Include image upload feature in POST Options API (Use multer https://www.npmjs.com/package/multer/v/2.0.0-rc.4)
+3. Add proper schema validation for request. (Use AJV validator (https://www.npmjs.com/package/ajv))
 4. Add DB validation for params like question_id, option_id, skip_to_question etc.
-5. Complete e2e and unit tests.
+5. Improve e2e and unit test coverage.
 6. Create swagger documentation.
