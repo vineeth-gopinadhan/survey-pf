@@ -19,6 +19,7 @@ class AppRouter {
 
   private setupRoutes() {
     // ToDo: Add proper validations
+    // ToDo: Add DB validation on questionId, skip_to_question 
     this.router.post(
       '/v1/questions/:questionId/option',
       this.optionController.createOption.bind(this.optionController),
@@ -30,6 +31,11 @@ class AppRouter {
     this.router.delete(
       '/v1/options/:optionId',
       this.optionController.deleteOption.bind(this.optionController),
+    );
+    // ToDo: Add DB validation on questionId, optionId, skip_to_question 
+    this.router.put(
+      '/v1/questions/:questionId/options/:optionId',
+      this.optionController.updateOption.bind(this.optionController),
     );
   }
 

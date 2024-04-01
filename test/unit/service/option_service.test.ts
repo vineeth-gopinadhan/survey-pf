@@ -155,4 +155,52 @@ describe('OptionService', () => {
       await expect(optionService.deleteOption(optionId)).rejects.toThrow('Database error');
     });
   });
+
+  describe('updateOption', () => {
+    it('should call pg.query with correct parameters', async () => {
+      const pgMock: jest.Mocked<DatabaseManager> = {
+        query: jest.fn(),
+      } as any;
+
+      const optionService = new OptionService(pgMock);
+
+      const option: OptionData = {
+        optionId: 1,
+        questionId: 1,
+        imageUrl: 'image-url',
+        subtitle: 'subtitle',
+        skipToQuestion: 2,
+        order: 1,
+      };
+      await optionService.updateOption(option);
+
+      expect(pgMock.query).toHaveBeenCalledWith(Query.Update_Option, [
+        option.optionId,
+        option.questionId,
+        option.imageUrl,
+        option.subtitle,
+        option.skipToQuestion,
+        option.order,
+      ]);
+    });
+
+    it('should throw an error if database query fails', async () => {
+
+      const pgMock: jest.Mocked<DatabaseManager> = {
+        query: jest.fn().mockRejectedValue(new Error('Database error')),
+      } as any;
+
+      const optionService = new OptionService(pgMock as DatabaseManager);
+
+      const option: OptionData = {
+        optionId: 1,
+        questionId: 1,
+        imageUrl: 'image-url',
+        subtitle: 'subtitle',
+        skipToQuestion: 2,
+        order: 1,
+      };
+      await expect(optionService.updateOption(option)).rejects.toThrow('Database error');
+    });
+  });
 });

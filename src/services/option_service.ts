@@ -46,4 +46,22 @@ export default class OptionService {
       throw err;
     }
   }
+
+  async updateOption(option: OptionData) {
+    try {
+
+      const reqParam: any[] = [
+        option.optionId,
+        option.questionId,
+        option.imageUrl,
+        option.subtitle,
+        option.skipToQuestion,
+        option.order,
+      ];
+      await this.pg.query(Query.Update_Option, reqParam);
+    } catch (err) {
+      throw err;
+    }
+  }
+
 }
